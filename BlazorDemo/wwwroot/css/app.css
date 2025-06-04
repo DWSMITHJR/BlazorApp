@@ -153,3 +153,7 @@ input, select {
 .element {
     animation: fadeIn 1s ease-in-out;
 }
+.error {
+    color: red;
+    font-size: 0.9em;
+}

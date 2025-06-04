@@ -1,4 +1,5 @@
 ﻿@page "/controls"
+@using System.ComponentModel.DataAnnotations
 @inject HttpClient Http
 
 <PageTitle>Counter</PageTitle>
@@ -18,7 +19,7 @@
 
     <label>Image Display:</label><br>
     <img src="https://uploads-ssl.webflow.com/634a245ea4220255c5cb9dcc/6355b6e8256a8d2a146b5779_Azure.png" />
-
+    <br>
     <label>Animated Text:</label>
     <h4 class="animated">Blazor is awesome!</h4>
 
@@ -40,4 +41,82 @@
     private string? SelectedOption { get; set; }
     private int? NumberValue { get; set; }
     private string? PhoneNumber { get; set; }
+}
+
+<EditForm Model="@formData" OnValidSubmit="@HandleSubmit">
+    <div class="container">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <label>Text Input:</label>
+        <InputText @bind-Value="formData.TextValue" class="form-control" />
+        <ValidationMessage For="@(() => formData.TextValue)" class="error" />
+
+        <label>Dropdown Selection:</label>
+        <InputSelect @bind-Value="formData.SelectedOption">
+            <option value="">-- Select an option --</option>
+            <option value="Option 1">Option 1</option>
+            <option value="Option 2">Option 2</option>
+            <option value="Option 3">Option 3</option>
+        </InputSelect>
+        <ValidationMessage For="@(() => formData.SelectedOption)" class="error" />
+
+        <label>Number Input:</label>
+        <InputNumber @bind-Value="formData.NumberValue" />
+        <ValidationMessage For="@(() => formData.NumberValue)" class="error" />
+
+        <label>Phone Number Input:</label>
+        <InputText @bind-Value="formData.PhoneNumber" placeholder="123-456-7890" />
+        <ValidationMessage For="@(() => formData.PhoneNumber)" class="error" />
+
+        <button type="submit">Submit</button>
+
+        @if (isSubmitted)
+        {
+            <h4>Submitted Values:</h4>
+            <p>Text: @formData.TextValue</p>
+            <p>Dropdown: @formData.SelectedOption</p>
+            <p>Number: @formData.NumberValue</p>
+            <p>Phone: @formData.PhoneNumber</p>
+        }
+    </div>
+</EditForm>
+
+@code {
+    private FormData formData = new();
+    private bool isSubmitted = false;
+
+    private void HandleSubmit()
+    {
+        isSubmitted = true;
+    }
+
+    private class FormData
+    {
+        [Required(ErrorMessage = "Text input is required.")]
+        public string? TextValue { get; set; }
+
+        [Required(ErrorMessage = "Please select an option.")]
+        public string? SelectedOption { get; set; }
+
+        [Range(1, 100, ErrorMessage = "Number must be between 1 and 100.")]
+        public int? NumberValue { get; set; }
+
+        [RegularExpression(@"^\d{3}-\d{3}-\d{4}$", ErrorMessage = "Phone must be in format 123-456-7890.")]
+        public string? PhoneNumber { get; set; }
+    }
+}
+
+@inject ApiService ApiService
+
+<button @onclick="CallApis">Fetch Data</button>
+
+@code {
+    private async Task CallApis()
+    {
+        var userData = await ApiService.CallApiAsync("UserService");
+        var productData = await ApiService.CallApiAsync("ProductService");
+        Console.WriteLine($"Users: {userData}");
+        Console.WriteLine($"Products: {productData}");
+    }
 }
