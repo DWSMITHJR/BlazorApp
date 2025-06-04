@@ -1,0 +1,69 @@
+﻿@page "/controls"
+@inject HttpClient Http
+
+<PageTitle>Counter</PageTitle>
+<h1>Blazor Controls Example</h1>
+<p>This component demonstrates form processing data from the user.</p>
+<style>
+    .container {
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+    label {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    input, select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .animated {
+        animation: fadeIn 2s ease-in-out infinite alternate;
+    }
+    .element { animation: fadeIn 1s ease-in-out; }
+
+    </style>
+
+<div class="container">
+    <label>Text Input:</label>
+    <input type="text" @bind="TextValue" />
+
+    <label>Dropdown Selection:</label>
+    <select @bind="SelectedOption">
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+    </select>
+
+    <label>Image Display:</label><br>
+    <img src="https://uploads-ssl.webflow.com/634a245ea4220255c5cb9dcc/6355b6e8256a8d2a146b5779_Azure.png" />
+
+    <label>Animated Text:</label>
+    <h4 class="animated">Blazor is awesome!</h4>
+
+    <label>Number Input:</label>
+    <input type="number" @bind="NumberValue" />
+
+    <label>Phone Number Input:</label>
+    <input type="tel" @bind="PhoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" />
+
+    <label>Submitted Values:</label>
+    <p>Text: @TextValue</p>
+    <p>Dropdown: @SelectedOption</p>
+    <p>Number: @NumberValue</p>
+    <p>Phone: @PhoneNumber</p>
+</div>
+
+@code {
+    private string? TextValue { get; set; }
+    private string? SelectedOption { get; set; }
+    private int? NumberValue { get; set; }
+    private string? PhoneNumber { get; set; }
+}
