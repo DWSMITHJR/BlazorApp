@@ -1,0 +1,170 @@
+@page "/resume"
+
+<PageTitle>Resume</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">Donald W. Smith Jr. - not my real resume</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <img src="https://via.placeholder.com/200" class="img-fluid rounded-circle mb-3" alt="Donald W. Smith Jr." />
+                                    <h4 class="mb-0">Contact Information</h4>
+                                    <hr class="my-2" />
+                                    <ul class="list-unstyled">
+                                        <li><i class="bi bi-envelope"></i> architect@donaldwsmithjr.com</li>
+                                        <li><i class="bi bi-telephone"></i> 404 939-3663</li>
+                                        <li><i class="bi bi-geo-alt"></i> Atlanta, GA</li>
+                                        <li><i class="bi bi-link"></i> <a href="https://linkedin.com/in/donaldwsmithjr" target="_blank">LinkedIn</a></li>
+                                        <li><i class="bi bi-github"></i> <a href="https://github.com/DWSMITHJR" target="_blank">GitHub</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h3>Professional Experience</h3>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <h4>Senior Software Engineer</h4>
+                                    <p class="text-muted">Tech Innovators Inc. • 2023 - Present</p>
+                                    <ul>
+                                        <li>Lead development of enterprise-level applications using Blazor and .NET</li>
+                                        <li>Architect and implement scalable cloud solutions on Azure</li>
+                                        <li>Mentor junior developers and lead code reviews</li>
+                                        <li>Optimize application performance and implement security best practices</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-item">
+                                    <h4>Software Developer</h4>
+                                    <p class="text-muted">Creative Solutions • 2020 - 2023</p>
+                                    <ul>
+                                        <li>Developed cross-platform applications using Blazor WebAssembly</li>
+                                        <li>Implemented CI/CD pipelines using GitHub Actions</li>
+                                        <li>Collaborated with cross-functional teams to deliver high-quality software</li>
+                                        <li>Conducted technical interviews and participated in hiring process</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h3>Education</h3>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <h4>Bachelors</h4>
+                                    <p class="text-muted">University of Georgia • 1989 - 1993</p>
+                                    <ul>
+                                        <li>Management Information Systems</li>
+                                        <li>Bachelors of Business</li>
+                                        <li>Sociology minor</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h3>Skills</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Technical Skills</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="bi bi-check"></i> C#/.NET</li>
+                                        <li><i class="bi bi-check"></i> Blazor</li>
+                                        <li><i class="bi bi-check"></i> ASP.NET Core</li>
+                                        <li><i class="bi bi-check"></i> Azure</li>
+                                        <li><i class="bi bi-check"></i> SQL Server</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Soft Skills</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="bi bi-check"></i> Team Leadership</li>
+                                        <li><i class="bi bi-check"></i> Problem Solving</li>
+                                        <li><i class="bi bi-check"></i> Communication</li>
+                                        <li><i class="bi bi-check"></i> Project Management</li>
+                                        <li><i class="bi bi-check"></i> Agile Methodologies</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .timeline {
+        position: relative;
+        padding: 20px 0;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background: #ddd;
+        left: 50%;
+        top: 0;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 30px;
+        padding-left: 20px;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #4CAF50;
+        border-radius: 50%;
+        left: -10px;
+        top: 0;
+    }
+
+    .card {
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .card-header {
+        padding: 15px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .bi {
+        margin-right: 5px;
+    }
+
+    .nav-link.active {
+        background-color: #0d6efd;
+        color: white !important;
+    }
+
+    .nav-link:hover {
+        background-color: #e9ecef;
+    }
+
+    /* Center the content at 80% width */
+    .container {
+        max-width: 1200px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .col-md-10 {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>

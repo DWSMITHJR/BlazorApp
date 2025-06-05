@@ -1,4 +1,4 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Donald W. Smith Jr.</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -10,32 +10,58 @@
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
     <nav class="nav flex-column">
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            <NavLink class="nav-link d-flex align-items-center" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill me-2" aria-hidden="true"></span>
+                <span>Home</span>
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+            <NavLink class="nav-link d-flex align-items-center" href="counter">
+                <span class="bi bi-123 me-2" aria-hidden="true"></span>
+                <span>Counter</span>
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            <NavLink class="nav-link d-flex align-items-center" href="weather">
+                <span class="bi bi-cloud-sun-fill me-2" aria-hidden="true"></span>
+                <span>Weather</span>
             </NavLink>
         </div>        
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="Controls">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Controls
+            <NavLink class="nav-link d-flex align-items-center" href="Controls">
+                <span class="bi bi-list-nested me-2" aria-hidden="true"></span>
+                <span>Controls</span>
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link d-flex align-items-center" href="resume">
+                <span class="bi bi-file-text-fill me-2" aria-hidden="true"></span>
+                <span>Resume</span>
             </NavLink>
         </div>        
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="about">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> About
+            <NavLink class="nav-link d-flex align-items-center" href="about">
+                <span class="bi bi-info-square-fill me-2" aria-hidden="true"></span>
+                <span>About</span>
             </NavLink>
         </div>
     </nav>
 </div>
+
+<style>
+    .nav-link {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .nav-link span {
+        font-size: 1.1rem;
+    }
+
+    .nav-link .bi {
+        font-size: 1.1rem;
+        margin-right: 0.5rem;
+    }
+</style>
 
 @code {
     private bool collapseNavMenu = true;
