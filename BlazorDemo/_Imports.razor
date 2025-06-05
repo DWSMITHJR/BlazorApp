@@ -1,10 +1,26 @@
-﻿@using System.Net.Http
+@* System namespaces *@
+@using System
+@using System.Net.Http
 @using System.Net.Http.Json
-@using Microsoft.AspNetCore.Components.Forms
+@using System.Security.Claims
+@using System.Threading.Tasks
+
+@* Microsoft Blazor namespaces *@
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
-@using Microsoft.AspNetCore.Components.Web.Virtualization
-@using Microsoft.AspNetCore.Components.WebAssembly.Http
-@using Microsoft.JSInterop
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+@* Microsoft Extensions namespaces *@
+@using Microsoft.Extensions.Logging
+
+@* Application namespaces *@
 @using BlazorDemo
+@using BlazorDemo.Shared
+@using BlazorDemo.Models
+@using BlazorDemo.Services
+@using BlazorDemo.Components
+@using BlazorDemo.Pages
 @using BlazorDemo.Layout

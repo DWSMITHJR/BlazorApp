@@ -19,6 +19,19 @@ main {
     height: 3.5rem;
     display: flex;
     align-items: center;
+    padding: 0 1rem;
+}
+
+.logo-container {
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 30px;
+    width: auto;
+    margin-right: 1rem;
 }
 
     .top-row ::deep a, .top-row ::deep .btn-link {

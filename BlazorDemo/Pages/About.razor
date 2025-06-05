@@ -1,8 +1,81 @@
 @page "/about"
+@using Microsoft.JSInterop
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+@using BlazorDemo.Models
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Web
 
 <PageTitle>About</PageTitle>
 
-<div class="text-center">
-    <h1 class="display-4">About Donald's Base</h1>
-    <p>This is a Blazor WebAssembly application.</p>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Generate Access Code</h3>
+                </div>
+                <div class="card-body">
+                    <EditForm Model="@emailRequest" OnValidSubmit="@GenerateCode">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <InputText id="email" @bind-Value="emailRequest.Email" class="form-control" />
+                            <ValidationMessage For="@(() => emailRequest.Email)" />
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary w-100">Generate Code</button>
+                        </div>
+                    </EditForm>
+
+                    @if (generatedCode.HasValue)
+                    {
+                        <div class="alert alert-success mt-3">
+                            <h4>Your Access Code:</h4>
+                            <p class="display-4">@generatedCode.Value</p>
+                            <button class="btn btn-outline-primary" @onclick="@CopyCode">Copy Code</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@code {
+    private EmailRequest emailRequest = new();
+    private int? generatedCode;
+
+    private async Task GenerateCode()
+    {
+        try
+        {
+            var response = await Http.PostAsJsonAsync("api/code/generate", emailRequest);
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<CodeResponse>();
+                if (result != null)
+                {
+                    generatedCode = result.Code;
+                }
+            }
+            else
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                await JSRuntime.InvokeVoidAsync("alert", $"Error: {error}");
+            }
+        }
+        catch (Exception ex)
+        {
+            await JSRuntime.InvokeVoidAsync("alert", $"An error occurred: {ex.Message}");
+        }
+    }
+
+    private async Task CopyCode()
+    {
+        if (generatedCode.HasValue)
+        {
+            await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", generatedCode.Value.ToString());
+            await JSRuntime.InvokeVoidAsync("alert", "Code copied to clipboard!");
+        }
+    }
+}

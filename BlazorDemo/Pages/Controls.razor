@@ -1,47 +1,11 @@
-﻿@page "/controls"
+@page "/controls"
 @using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
 @inject HttpClient Http
 
-<PageTitle>Counter</PageTitle>
-<h1>Blazor Controls Example</h1>
-<p>This component demonstrates form processing data from the user.</p>
-
-<div class="container">
-    <label>Text Input:</label>
-    <input type="text" @bind="TextValue" />
-
-    <label>Dropdown Selection:</label>
-    <select @bind="SelectedOption">
-        <option value="Option 1">Option 1</option>
-        <option value="Option 2">Option 2</option>
-        <option value="Option 3">Option 3</option>
-    </select>
-
-    <label>Image Display:</label><br>
-    <img src="https://uploads-ssl.webflow.com/634a245ea4220255c5cb9dcc/6355b6e8256a8d2a146b5779_Azure.png" />
-    <br>
-    <label>Animated Text:</label>
-    <h4 class="animated">Blazor is awesome!</h4>
-
-    <label>Number Input:</label>
-    <input type="number" @bind="NumberValue" />
-
-    <label>Phone Number Input:</label>
-    <input type="tel" @bind="PhoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" />
-
-    <label>Submitted Values:</label>
-    <p>Text: @TextValue</p>
-    <p>Dropdown: @SelectedOption</p>
-    <p>Number: @NumberValue</p>
-    <p>Phone: @PhoneNumber</p>
-</div>
-
-@code {
-    private string? TextValue { get; set; }
-    private string? SelectedOption { get; set; }
-    private int? NumberValue { get; set; }
-    private string? PhoneNumber { get; set; }
-}
+<PageTitle>Form Controls</PageTitle>
+<h1>Blazor Form Controls Example</h1>
+<p>This component demonstrates form processing with validation in Blazor.</p>
 
 <EditForm Model="@formData" OnValidSubmit="@HandleSubmit">
     <div class="container">
@@ -49,11 +13,11 @@
         <ValidationSummary />
 
         <label>Text Input:</label>
-        <InputText @bind-Value="formData.TextValue" class="form-control" />
+        <InputText @bind-Value="formData.TextValue" class="form-control" @bind-Value:event="oninput" />
         <ValidationMessage For="@(() => formData.TextValue)" class="error" />
 
         <label>Dropdown Selection:</label>
-        <InputSelect @bind-Value="formData.SelectedOption">
+        <InputSelect @bind-Value="formData.SelectedOption" @bind-Value:event="onchange">
             <option value="">-- Select an option --</option>
             <option value="Option 1">Option 1</option>
             <option value="Option 2">Option 2</option>
@@ -62,11 +26,11 @@
         <ValidationMessage For="@(() => formData.SelectedOption)" class="error" />
 
         <label>Number Input:</label>
-        <InputNumber @bind-Value="formData.NumberValue" />
+        <InputNumber @bind-Value="formData.NumberValue" @bind-Value:event="oninput" />
         <ValidationMessage For="@(() => formData.NumberValue)" class="error" />
 
         <label>Phone Number Input:</label>
-        <InputText @bind-Value="formData.PhoneNumber" placeholder="123-456-7890" />
+        <InputText @bind-Value="formData.PhoneNumber" @bind-Value:event="oninput" placeholder="123-456-7890" />
         <ValidationMessage For="@(() => formData.PhoneNumber)" class="error" />
 
         <button type="submit">Submit</button>

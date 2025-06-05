@@ -1,4 +1,16 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
+
+@* Core Blazor namespaces *@
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@using Microsoft.AspNetCore.Components.Authorization
+
+@* Application namespaces *@
+@using BlazorDemo.Components
+@using BlazorDemo.Shared
+@using BlazorDemo
+@using BlazorDemo.Layout
 <div class="page">
     <div class="sidebar">
         <NavMenu />
@@ -6,7 +18,10 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+            <div class="logo-container">
+                <img src="/favicon.png" alt="Logo" class="logo" />
+            </div>
+            <a href="https://x.com/donaldwsmithjr" target="_blank">About</a>
         </div>
 
         <article class="content px-4">
