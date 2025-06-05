@@ -15,7 +15,7 @@ namespace BlazorDemo
 
         public async Task<string> CallApiAsync(string serviceName)
         {
-            if (_apiSettings.Endpoints.TryGetValue(serviceName, out string url))
+            if (_apiSettings.Endpoints.TryGetValue(serviceName, out string? url))
             {
                 var response = await _httpClient.GetAsync(url);
                 response.EnsureSuccessStatusCode();

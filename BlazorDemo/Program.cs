@@ -1,20 +1,20 @@
 using BlazorDemo;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using System.Net.Http;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Net.Http;
+using Microsoft.AspNetCore.Components;
 
-//HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-//var builder = webassemblyhostbuilder.createdefault(args);
-//builder.services.addhttpclient();
-//builder.rootcomponents.add<app>("#app");
-//builder.rootcomponents.add<headoutlet>("head::after");
-//builder.services.configure<apisettings>(builder.configuration.getsection("apisettings"));
-//builder.services.addhttpclient<apiservice>();
-//builder.services.addscoped(sp => new httpclient { baseaddress = new uri(builder.hostenvironment.baseaddress) });
+// Add root components
+builder.RootComponents.Add<App>("#app");
+builder.RootComponents.Add<HeadOutlet>("head::after");
 
-//await builder().runasync();
-//builder.rootcomponents.add<apiservice>();
+// Configure services
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
+builder.Services.AddScoped<ApiService>();
+
+await builder.Build().RunAsync();
